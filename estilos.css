@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a4a2e, #2d7a4f, #4caf7d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjeta {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 32px;
+  color: #1a4a2e;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.subtitulo {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.campo {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.3s;
+  color: #1f2937;
+}
+
+.campo:focus {
+  border-color: #2d7a4f;
+  box-shadow: 0 0 0 3px rgba(45, 122, 79, 0.15);
+}
+
+.boton {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2d7a4f, #4caf7d);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(45, 122, 79, 0.4);
+}
+
+.boton:active {
+  transform: translateY(0px);
+}
+
+.enlaces {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.enlaces a {
+  color: #2d7a4f;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.enlaces a:hover {
+  color: #1a4a2e;
+  text-decoration: underline;
+}
+
+.tarjeta-inicio {
+  text-align: center;
+  gap: 20px;
+}
+
+.mensaje-caja {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1.5px solid #86efac;
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.mensaje-icono {
+  font-size: 40px;
+}
+
+.mensaje-texto {
+  color: #1a4a2e;
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.mensaje-pie {
+  color: #9ca3af;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
