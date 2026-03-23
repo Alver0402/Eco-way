@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWay - Plataforma Sostenible</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">EcoWay</h1>
+                <div class="nav-links" id="nav-links">
+                    <a href="#" onclick="showPage('home')">Inicio</a>
+                    <a href="#" onclick="showPage('register')">Registrarse</a>
+                    <a href="#" onclick="showPage('login')">Iniciar Sesión</a>
+                    <a href="#" onclick="showPage('profile')" id="profile-link" style="display: none;">Perfil</a>
+                    <a href="#" onclick="logout()" id="logout-link" style="display: none;">Cerrar Sesión</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Página de Inicio -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <h2>Bienvenido a EcoWay</h2>
+                <p>Tu plataforma para un estilo de vida sostenible</p>
+                <div class="hero-buttons">
+                    <button onclick="showPage('register')" class="btn-primary">Comenzar</button>
+                    <button onclick="showPage('login')" class="btn-secondary">Ya tengo cuenta</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de Registro -->
+        <section id="register-page" class="page">
+            <div class="form-container">
+                <h2>Crear Cuenta</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Nombre completo</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Correo electrónico</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Contraseña</label>
+                        <input type="password" id="register-password" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-primary">Registrarse</button>
+                </form>
+                <div id="register-message"></div>
+            </div>
+        </section>
+
+        <!-- Página de Login -->
+        <section id="login-page" class="page">
+            <div class="form-container">
+                <h2>Iniciar Sesión</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Correo electrónico</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                </form>
+                <div id="login-message"></div>
+            </div>
+        </section>
+
+        <!-- Página de Menú Principal -->
+        <section id="menu-page" class="page">
+            <div class="menu-container">
+                <h2>¡Bienvenido a EcoWay!</h2>
+                <p class="welcome-text">Tu compañero en el camino hacia un estilo de vida sostenible</p>
+
+                <div class="streak-display">
+                    <div class="streak-icon"></div>
+                    <div class="streak-info">
+                        <span class="streak-number" id="current-streak">7</span>
+                        <span class="streak-text">días de racha</span>
+                    </div>
+                </div>
+
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="showPage('profile')">
+                        <div class="menu-icon"><img src="images/profile.png" alt="Perfil"></div>
+                        <h3>Mi Perfil</h3>
+                        <p>Gestiona tu información personal</p>
+                    </div>
+
+                    <div class="menu-item" onclick="showPage('guides')">
+                        <div class="menu-icon"><img src="images/guides.png" alt="Guías"></div>
+                        <h3>Guías de Reciclaje</h3>
+                        <p>Aprende a reciclar correctamente</p>
+                    </div>
+
+                    <div class="menu-item" onclick="showPage('activities')">
+                        <div class="menu-icon"><img src="images/activities.png" alt="Actividades"></div>
+                        <h3>Registro de Actividades</h3>
+                        <p>Registra tus acciones ecológicas</p>
+                    </div>
+
+                    <div class="menu-item" onclick="showPage('points')">
+                        <div class="menu-icon"><img src="images/points.png" alt="Puntos"></div>
+                        <h3>Puntos de Reciclaje</h3>
+                        <p>Encuentra centros de reciclaje cercanos</p>
+                    </div>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-points">0</span>
+                        <span class="stat-label">Puntos Totales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="activities-count">0</span>
+                        <span class="stat-label">Actividades</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="co2-saved">0kg</span>
+                        <span class="stat-label">CO₂ Ahorrado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de Guías de Reciclaje -->
+        <section id="guides-page" class="page">
+            <div class="content-container">
+                <h2>📚 Guías de Reciclaje</h2>
+
+                <!-- Códigos de Reciclaje -->
+                <div class="recycling-codes-section">
+                    <h3>♻️ Códigos de Reciclaje Estándar</h3>
+                    <p class="section-description">Conoce los 7 códigos de reciclaje para identificar correctamente cada tipo de residuo plástico</p>
+
+                    <div class="recycling-codes-grid">
+                        <!-- Código 1: PET -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">1</div>
+                                <div class="code-symbol">♳</div>
+                            </div>
+                            <h4>PET - Polietileno Tereftalato</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico transparente y resistente</p>
+                                <p><strong>Ejemplos:</strong> Botellas de agua, refrescos, aceite, champú</p>
+                                <p><strong>Reciclaje:</strong> Lavar bien, quitar etiquetas, aplastar para ahorrar espacio</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 2: HDPE -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">2</div>
+                                <div class="code-symbol">♴</div>
+                            </div>
+                            <h4>HDPE - Polietileno de Alta Densidad</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico opaco y resistente</p>
+                                <p><strong>Ejemplos:</strong> Botellas de leche, detergentes, productos de limpieza</p>
+                                <p><strong>Reciclaje:</strong> Enjuagar completamente, quitar tapas y etiquetas</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 3: PVC -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">3</div>
+                                <div class="code-symbol">♵</div>
+                            </div>
+                            <h4>PVC - Policloruro de Vinilo</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico flexible o rígido</p>
+                                <p><strong>Ejemplos:</strong> Tubos, ventanas, pisos, cortinas de ducha</p>
+                                <p><strong>Reciclaje:</strong> Verificar si tu centro local acepta PVC</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 4: LDPE -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">4</div>
+                                <div class="code-symbol">♶</div>
+                            </div>
+                            <h4>LDPE - Polietileno de Baja Densidad</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico flexible y blando</p>
+                                <p><strong>Ejemplos:</strong> Bolsas de plástico, envases flexibles, film</p>
+                                <p><strong>Reciclaje:</strong> Lavar si es posible, mantener limpio</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 5: PP -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">5</div>
+                                <div class="code-symbol">♷</div>
+                            </div>
+                            <h4>PP - Polipropileno</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico rígido y resistente al calor</p>
+                                <p><strong>Ejemplos:</strong> Tapas, envases de yogurt, pajitas, baterías</p>
+                                <p><strong>Reciclaje:</strong> Separar tapas de los envases</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 6: PS -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">6</div>
+                                <div class="code-symbol">♸</div>
+                            </div>
+                            <h4>PS - Poliestireno</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Plástico espumoso o rígido</p>
+                                <p><strong>Ejemplos:</strong> Vasos desechables, bandejas de comida, envases de huevos</p>
+                                <p><strong>Reciclaje:</strong> Evitar si es posible, buscar programas específicos</p>
+                            </div>
+                        </div>
+
+                        <!-- Código 7: Otros -->
+                        <div class="recycling-code-card">
+                            <div class="code-header">
+                                <div class="code-number">7</div>
+                                <div class="code-symbol">♹</div>
+                            </div>
+                            <h4>Otros Plásticos</h4>
+                            <div class="code-info">
+                                <p><strong>Material:</strong> Policarbonato, nylon, acrílico, etc.</p>
+                                <p><strong>Ejemplos:</strong> CDs, DVDs, algunos utensilios, gafas</p>
+                                <p><strong>Reciclaje:</strong> Verificar aceptación local, puede no reciclarse</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guía paso a paso sobre cómo reciclar correctamente -->
+                    <div class="recycling-guide-section">
+                        <h3>🗂️ Guía paso a paso para reciclar correctamente</h3>
+                        <ol class="recycling-guide-list">
+                            <li>
+                                <strong>Paso 1: Identifica y separa</strong>
+                                <p>Clasifica tu basura en orgánicos, inorgánicos reciclables y no reciclables. Usa recipientes separados en casa.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 2: Limpia antes de reciclar</strong>
+                                <p>Lava botellas, latas y envases enjuagándolos con agua para evitar contaminación y malos olores.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 3: Verifica códigos y materiales</strong>
+                                <p>Consulta los 7 códigos de reciclaje (1 a 7) y agrupa plásticos, vidrio, papel y metal por separado.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 4: Pliega y reduce volumen</strong>
+                                <p>Aplasta envases y empaques cuando sea posible para ahorrar espacio en el contenedor.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 5: Usa puntos de reciclaje autorizados</strong>
+                                <p>Lleva tus reciclables a centros como los listados en la sección de Puntos de Reciclaje en Bogotá.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 6: Evita contaminación cruzada</strong>
+                                <p>No mezcles materiales no reciclables con los reciclables. Si no estás seguro, consulta la guía local o el centro de acopio.</p>
+                            </li>
+                            <li>
+                                <strong>Paso 7: Mantente informado y participa</strong>
+                                <p>Aprende sobre campañas de reciclaje locales y participa en programas comunitarios para fortalecer el hábito.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="recycling-tips">
+                        <h4>💡 Consejos Importantes</h4>
+                        <ul>
+                            <li><strong>Lava siempre</strong> los envases antes de reciclarlos</li>
+                            <li><strong>Quita etiquetas y tapas</strong> cuando sea posible</li>
+                            <li><strong>Verifica localmente</strong> qué códigos acepta tu centro de reciclaje</li>
+                            <li><strong>Reduce primero</strong> antes de reciclar</li>
+                            <li><strong>Reutiliza</strong> cuando puedas en lugar de reciclar</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button onclick="showPage('menu')" class="btn-primary back-btn">← Volver al Menú</button>
+            </div>
+        </section>
+
+        <!-- Página de Registro de Actividades -->
+        <section id="activities-page" class="page">
+            <div class="content-container">
+                <h2>� Registro de Actividades de Reciclaje</h2>
+                <!-- Mensajes -->
+                <div id="activities-message"></div>
+                <!-- Calendario Interactivo -->
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <button id="prev-month" class="calendar-nav-btn">‹</button>
+                        <h3 id="calendar-title">Mes Año</h3>
+                        <button id="next-month" class="calendar-nav-btn">›</button>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Dom</div>
+                        <div class="calendar-day-header">Lun</div>
+                        <div class="calendar-day-header">Mar</div>
+                        <div class="calendar-day-header">Mié</div>
+                        <div class="calendar-day-header">Jue</div>
+                        <div class="calendar-day-header">Vie</div>
+                        <div class="calendar-day-header">Sáb</div>
+                        <!-- Los días se generan dinámicamente con JavaScript -->
+                    </div>
+
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <div class="legend-color today"></div>
+                            <span>Hoy</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color completed"></div>
+                            <span>Registrado</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color available"></div>
+                            <span>Disponible</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color disabled"></div>
+                            <span>No disponible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estadísticas de Racha -->
+                <div class="streak-stats">
+                    <div class="stat-card">
+                        <h4>🔥 Racha Actual</h4>
+                        <div class="streak-number" id="current-streak">0</div>
+                        <p>días consecutivos</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>📊 Total Registrado</h4>
+                        <div class="streak-number" id="total-days">0</div>
+                        <p>días este mes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>🏆 Mejor Racha</h4>
+                        <div class="streak-number" id="best-streak">0</div>
+                        <p>días consecutivos</p>
+                    </div>
+                </div>
+
+                <!-- Historial de Actividades -->
+                <div class="recent-activities">
+                    <h3>📝 Historial de Actividades</h3>
+                    <div id="activities-history">
+                        <p class="no-activities">No hay actividades registradas aún.</p>
+                    </div>
+                </div>
+
+                <button onclick="showPage('menu')" class="btn-primary back-btn">← Volver al Menú</button>
+            </div>
+        </section>
+
+        <!-- Modal de Confirmación -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📅 Confirmar Registro de Actividad</h3>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que quieres registrar una actividad de reciclaje para el día <strong id="confirm-date"></strong>?</p>
+                    <div class="confirmation-details">
+                        <p>✅ Esto contará como un día de actividad en tu racha</p>
+                        <p>📊 Se actualizarán tus estadísticas automáticamente</p>
+                        <p>🔒 Solo puedes registrar una actividad por día</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel-confirm" class="btn-secondary">Cancelar</button>
+                    <button id="confirm-activity" class="btn-primary">Confirmar Registro</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Puntos de Reciclaje -->
+        <section id="points-page" class="page">
+            <div class="content-container">
+                <h2>📍 Puntos de Reciclaje Cercanos</h2>
+
+                <!-- Barra de Búsqueda y Filtros -->
+                <div class="search-filters">
+                    <div class="search-bar">
+                        <input type="text" id="location-search" placeholder="Buscar por ubicación, barrio o dirección...">
+                        <button id="search-btn" class="btn-primary">🔍 Buscar</button>
+                    </div>
+
+                    <div class="filter-options">
+                        <select id="material-filter">
+                            <option value="">Todos los materiales</option>
+                            <option value="plastico">Plástico</option>
+                            <option value="papel">Papel y Cartón</option>
+                            <option value="vidrio">Vidrio</option>
+                            <option value="organicos">Orgánicos</option>
+                            <option value="electronicos">Electrónicos</option>
+                            <option value="metales">Metales</option>
+                            <option value="baterias">Baterías</option>
+                        </select>
+
+                        <select id="schedule-filter">
+                            <option value="">Todos los horarios</option>
+                            <option value="24h">24 horas</option>
+                            <option value="weekday">Lunes a Viernes</option>
+                            <option value="weekend">Fines de semana</option>
+                        </select>
+
+                        <button id="clear-filters" class="btn-secondary">Limpiar Filtros</button>
+                    </div>
+                </div>
+
+                <!-- Estadísticas Rápidas -->
+                <div class="points-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-points-count">0</span>
+                        <span class="stat-label">Puntos disponibles</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="open-now-count">0</span>
+                        <span class="stat-label">Abiertos ahora</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="accepts-plastic-count">0</span>
+                        <span class="stat-label">Aceptan plástico</span>
+                    </div>
+                </div>
+
+                <!-- Listado de Puntos de Reciclaje -->
+                <div class="recycling-points" id="recycling-points-list">
+                    <!-- Los puntos se cargarán dinámicamente con JavaScript -->
+                </div>
+
+                <!-- Mensaje cuando no hay resultados -->
+                <div id="no-results" class="no-results" style="display: none;">
+                    <h3>😔 No se encontraron puntos de reciclaje</h3>
+                    <p>Intenta cambiar los filtros o buscar en otra ubicación.</p>
+                    <button id="reset-search" class="btn-primary">Mostrar Todos</button>
+                </div>
+
+                <button onclick="showPage('menu')" class="btn-primary back-btn">← Volver al Menú</button>
+            </div>
+        </section>
+
+        <!-- Página de Perfil -->
+        <section id="profile-page" class="page">
+            <div class="form-container">
+                <h2>Mi Perfil</h2>
+                <div id="profile-info">
+                    <div class="profile-display">
+                        <h3>Datos del usuario</h3>
+                        <p><strong>Nombre:</strong> <span id="profile-name"></span></p>
+                        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                        <button onclick="showEditForm()" class="btn-secondary">Editar Perfil</button>
+                    </div>
+                    <div class="profile-edit" id="profile-edit" style="display: none;">
+                        <h3>Editar Perfil</h3>
+                        <form id="profile-form">
+                            <div class="form-group">
+                                <label for="profile-edit-name">Nombre completo</label>
+                                <input type="text" id="profile-edit-name" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Guardar Cambios</button>
+                            <button type="button" onclick="hideEditForm()" class="btn-secondary">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="profile-message"></div>
+                <button onclick="showPage('menu')" class="btn-primary back-btn">← Volver al Menú</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EcoWay - Plataforma Sostenible</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
